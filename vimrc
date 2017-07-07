@@ -195,4 +195,3 @@ exec "w"
 exec "!gcc % -o %< -gstabs+"
 exec "!gdb %<"
 endfunc
-</cr></f9></f9></cr></f5></f5></cr></cr></f5></f5></cr></f5></cr></f5></f5>
