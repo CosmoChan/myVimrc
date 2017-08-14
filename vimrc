@@ -158,40 +158,68 @@ au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|
 filetype on
 filetype indent on
 
-" F5编译和运行C程序，C++程序,Python程序，shell程序，F9 gdb调试
+" F9编译和运行C程序，C++程序,Python程序，shell程序，F9 gdb调试
 " 请注意，下述代码在windows下使用会报错，需要去掉./这两个字符
 "
-" <f5> 编译和运行C
-map <f5> :call CompileRunGcc()<cr>
-func! CompileRunGcc()
-exec "w"
-exec "!gcc % -o %<"
-exec "! ./%<"
-endfunc
+" <f9> 编译和运行C
+" map <f9> :call CompileRunGcc()<cr>
+" func! CompileRunGcc()
+" exec "w"
+" exec "!gcc % -o %<"
+" exec "! ./%<"
+" endfunc
  
-"< F5> 编译和运行C++
-map <f5> :call CompileRunGpp()<cr>
+"< F9> 编译和运行C++
+map <f9> :call CompileRunGpp()<cr>
 func! CompileRunGpp()
 exec "w"
-exec "!g++ % -o %<"
+exec "!g++ -std=c++0x % -o %<"
 exec "! ./%<"
 endfunc
   
-" <f5> 运行python程序
-map <f5> :w<cr>:!python %<cr>
+" <f9> 运行python程序
+" map <f9> :w<cr>:!python %<cr>
  
-" <f5> 运行shell程序
-map <f5> :call CompileRunSH()<cr>
-func! CompileRunSH()
-exec "w"
-exec "!chmod a+x %"
-exec "!./%"
-endfunc
+" " <f9> 运行shell程序
+" map <f9> :call CompileRunSH()<cr>
+" func! CompileRunSH()
+" exec "w"
+" exec "!chmod a+x %"
+" exec "!./%"
+" endfunc
  
-"<f9>  gdb调试
-map <f9> :call Debug()<cr>
-func!  Debug()
-exec "w"
-exec "!gcc % -o %< -gstabs+"
-exec "!gdb %<"
-endfunc
+" "<f9>  gdb调试
+" map <f9> :call Debug()<cr>
+" func!  Debug()
+" exec "w"
+" exec "!gcc % -o %< -gstabs+"
+" exec "!gdb %<"
+" endfunc
+"
+" REQUIRED. This makes vim invoke Latex-Suite when you open a tex file.
+filetype plugin on
+
+" IMPORTANT: win32 users will need to have 'shellslash' set so that latex
+" can be called correctly.
+set shellslash
+
+" IMPORTANT: grep will sometimes skip displaying the file name if you
+" search in a singe file. This will confuse Latex-Suite. Set your grep
+" program to always generate a file-name.
+set grepprg=grep\ -nH\ $*
+
+" OPTIONAL: This enables automatic indentation as you type.
+filetype indent on
+
+" OPTIONAL: Starting with Vim 7, the filetype of empty .tex files defaults to
+" 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
+" The following changes the default filetype back to 'tex':
+let g:tex_flavor='latex'
+
+" 解决插入模式下delete/backspace键失效
+set backspace=2
+
+" 使用语法高亮定义代码折叠
+set foldmethod=syntax
+" 打开文件默认不折叠代码
+set foldlevelstart=99
