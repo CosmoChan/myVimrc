@@ -152,6 +152,7 @@ let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
 let g:NERDCommentEmptyLines = 1
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 
 "==========================================
@@ -187,7 +188,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 set autochdir " 工作目录改为当前目录
 autocmd BufEnter * lcd %:p:h
 " NERD TREE 开关
-nnoremap <C-n> :NERDTreeFind <CR>
+nnoremap <C-n> :NERDTreeToggle <CR>
 " 自动打开NERDTree
 autocmd VimEnter * NERDTree
 wincmd w
