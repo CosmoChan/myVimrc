@@ -5,7 +5,7 @@ set nocp                "不兼容vi
 syntax on               "语法高亮
 set nrformats=          "00x增减数字时使用十进制
 set nu                  "行号
-set cursorline          "突出显示当前行
+" set cursorline          "突出显示当前行
 set nobackup            "覆盖文件时不备份
 set noswapfile          "取消交换文件
 set ruler               "右下角显示光标位置
@@ -21,6 +21,10 @@ set hlsearch            "高亮符合搜索的文本
 set pastetoggle=<F12>   "F12切换粘贴模式 
 set showmatch           "跳转并高亮一下匹配的括号
 set ignorecase          "搜索忽略大小写
+" <C-c> 复制所有内容
+nnoremap <C-c> gg V G y
+" 'd'键跳转函数定义
+nnoremap d # :noh <CR>
 " indent可以删除缩进, eol可以合并两行, start可以删除此次插入前的输入
 set backspace=indent,eol,start
 " 在行头能跳转上一行, 行尾能跳转下一行
