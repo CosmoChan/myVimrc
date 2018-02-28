@@ -24,7 +24,7 @@ set ignorecase          "搜索忽略大小写
 " <C-c> 复制所有内容
 nnoremap <C-c> gg V G y
 " 'd'键跳转函数定义
-nnoremap d # :noh <CR>
+nnoremap D # :noh <CR>
 " indent可以删除缩进, eol可以合并两行, start可以删除此次插入前的输入
 set backspace=indent,eol,start
 " 在行头能跳转上一行, 行尾能跳转下一行
@@ -182,7 +182,13 @@ let g:tex_indent_items=0
 "==========================================
 " NERD TREE 设置
 "==========================================
-" NERD TREE 开关
-map <C-n> :NERDTreeToggle<CR>
 " 当只剩下NERDTree窗口的时候关闭VIM
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+set autochdir " 工作目录改为当前目录
+autocmd BufEnter * lcd %:p:h
+" NERD TREE 开关
+nnoremap <C-n> :NERDTreeFind <CR>
+" 自动打开NERDTree
+autocmd VimEnter * NERDTree
+wincmd w
+autocmd VimEnter * wincmd w
